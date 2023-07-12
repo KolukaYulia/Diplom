@@ -22,6 +22,7 @@ dependencies {
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
     testImplementation 'com.codeborne:selenide:6.13.0'
     testImplementation group: 'org.postgresql', name: 'postgresql', version: '42.2.14'
+    testImplementation 'io.qameta.allure:allure-selenide:2.13.6'
 }
 
 test {

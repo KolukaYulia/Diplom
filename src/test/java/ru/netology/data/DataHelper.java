@@ -16,22 +16,22 @@ public class DataHelper {
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public class Card {
+    public static class Card {
         private String cardNumber;
         private String month;
         private String year;
         private String cardHolder;
         private String cvv;
     }
-    public Card getApprovedCard() {
+    public static Card getApprovedCard() {
         return new Card("4444444444444441", "12", "23", "Ivan Ivanov", "123");
     }
 
-    public Card getDeclinedCard() {
+    public static Card getDeclinedCard() {
         return new Card("4444444444444442", "12", "23", "Iva Ivanov", "123");
     }
 
-    public Card getEmptyCard() {
+    public static Card getEmptyCard() {
         return new Card("", "", "", "", "");
     }
 

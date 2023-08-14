@@ -21,9 +21,9 @@ public class SQLHelper {
             runner.update(conn, cleanCreditRequest);
             runner.update(conn, cleanOrder);
             runner.update(conn, cleanPayment);
-        } catch (Exception e) {
-            System.out.println("SQL exception in clearDB");
-        }
+        } catch (Exception e) {}
+            //System.out.println("SQL exception in clearDB");
+
     }
 
     public static String getPaymentStatus() {

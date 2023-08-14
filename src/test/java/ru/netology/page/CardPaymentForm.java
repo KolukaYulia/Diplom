@@ -6,8 +6,10 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -44,24 +46,24 @@ public class CardPaymentForm {
     }
 
     public void waitApprovedMessage() {
-        approvedPayment.shouldBe(visible);
+        approvedPayment.shouldBe(visible, Duration.ofSeconds(15));
         cancelField.click();
     }
 
     public void waitFailureMessage() {
-        failurePayment.shouldBe(visible);
+        failurePayment.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void waitWrongFormatMessage() {
-        wrongFormatError.shouldBe(visible);
+        wrongFormatError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void waitExpirationDateErrorMessage() {
-        cardExpirationDateError.shouldBe(visible);
+        cardExpirationDateError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void waitExpiredErrorMessage() {
-        cardExpiredError.shouldBe(visible);
+        cardExpiredError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
 

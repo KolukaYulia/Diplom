@@ -11,11 +11,11 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CardPaymentTest {
-    public static String url = System.getProperty("sut.url");
+    //public static String url = System.getProperty("app.url");
 
     @BeforeEach
     public void openPage() {
-        open(url);
+        open("http://localhost:8080/");
     }
 
     @AfterEach
@@ -37,7 +37,7 @@ public class CardPaymentTest {
     void PositiveScriptValidCardApproved() {
         val startPage = new MainPage();
         val payment = startPage.goToCardPaymentForm();
-        payment.inputData(DataHelper.getApprovedCard());
+        payment.inputData(DataHelper.getValidApprovedCard());
         payment.waitApprovedMessage();
         assertEquals("APPROVED", SQLHelper.getPaymentStatus());
     }

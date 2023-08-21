@@ -66,5 +66,9 @@ public class CardPaymentForm {
         cardExpiredError.shouldBe(visible, Duration.ofSeconds(15));
     }
 
+    public void waitRequiredFieldError() {
+        requiredFieldError.shouldBe(visible, Duration.ofSeconds(15));
+    }
+
 
 }

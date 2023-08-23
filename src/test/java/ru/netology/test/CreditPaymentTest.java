@@ -37,7 +37,7 @@ public class CreditPaymentTest {
         val payment = startPage.goToCreditPaymentForm();
         payment.inputData(DataHelper.getValidApprovedCard());
         payment.waitApprovedMessage();
-        assertEquals("APPROVED", SQLHelper.getPaymentStatus());
+        assertEquals("APPROVED", SQLHelper.getCreditRequestStatus());
     }
     @Test
     void positiveCreditScriptValidCardDeclined() {

@@ -1,11 +1,14 @@
 package ru.netology.data;
 
 import lombok.val;
+import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import static java.sql.DriverManager.getConnection;
 
 public class SQLHelper {
     private static String url = System.getProperty("db.url");
@@ -17,15 +20,17 @@ public class SQLHelper {
         val cleanOrder = "DELETE FROM order_entity;";
         val cleanPayment = "DELETE FROM payment_entity;";
         val runner = new QueryRunner();
-        try (val conn = DriverManager.getConnection(url, user, password)) {
+        try (val conn = getConnection(url, user, password)) {
             runner.update(conn, cleanCreditRequest);
             runner.update(conn, cleanOrder);
             runner.update(conn, cleanPayment);
-        } catch (Exception e) {}
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        //catch (Exception e) {}
             //System.out.println("SQL exception in clearDB");
 
     }
-
     public static String getPaymentStatus() {
         val codesSQL = "SELECT status FROM payment_entity;";
         return getData(codesSQL);
@@ -40,7 +45,7 @@ public class SQLHelper {
         Long count = null;
         val codesSQL = " SELECT COUNT(*) FROM order_entity;";
         val runner = new QueryRunner();
-        try (val conn = DriverManager.getConnection(url, user, password)) {
+        try (val conn = getConnection(url, user, password)) {
             count = runner.query(conn, codesSQL, new ScalarHandler<>());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,7 +56,7 @@ public class SQLHelper {
     private static String getData(String query) {
         String data = "";
         val runner = new QueryRunner();
-        try (val conn = DriverManager.getConnection(url, user, password)) {
+        try (val conn = getConnection(url, user, password)) {
             data = runner.query(conn, query, new ScalarHandler<>());
         } catch (SQLException e) {
             e.printStackTrace();

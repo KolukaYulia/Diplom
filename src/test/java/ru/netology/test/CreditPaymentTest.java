@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CreditPaymentTest {
     @BeforeEach
     public void openPage() {
-        open("http://localhost:8080/");
+        open("http://localhost:8080");
     }
 
     @AfterEach
